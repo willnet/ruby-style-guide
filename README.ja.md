@@ -1129,7 +1129,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-parens-around-condition"></a>
-  `if`/`unless`/`while`/`until`の条件式の周囲を括弧で括らないようにしましょう。
+  条件式の周囲を括弧で括らないようにしましょう。
 <sup>[[link](#no-parens-around-condition)]</sup>
 
   ```Ruby
