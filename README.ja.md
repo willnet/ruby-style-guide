@@ -60,7 +60,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 ルールの衝突が発生した場合は、
 そのプロジェクトにおいては、プロジェクト固有のガイドを優先してください。
 
-このガイドのPDFやHTMLのコピーは[Transmuter][]を使って生成できます。
+このガイドのPDFやHTMLのコピーは[Pandoc][]を使って生成できます。
 
 [RuboCop][]は、
 このスタイルガイドに基づいたコード分析器です。
@@ -3928,6 +3928,6 @@ Rubyのコードスタイルに興味のある全ての人と共に取り組む�
 [rails-style-guide]: https://github.com/bbatsov/rails-style-guide
 [pickaxe]: https://pragprog.com/book/ruby4/programming-ruby-1-9-2-0
 [trpl]: http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177
-[transmuter]: https://github.com/kalbasit/transmuter
+[Pandoc]: http://pandoc.org/
 [RuboCop]: https://github.com/bbatsov/rubocop
 [rdoc]: http://rdoc.sourceforge.net/doc/
