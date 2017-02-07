@@ -3348,6 +3348,19 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   timestamp.is_a? Integer
   ```
 
+  * <a name="random-numbers"></a>
+  オフセットを持つ乱数を生成する場合は、整数の代わりに範囲リテラルを使用しましょう。
+  意図が明確であるためです。サイコロの役割をシミュレートすることを想像してください。
+<sup>[[link](#random-numbers)]</sup>
+
+    ```Ruby
+    # 悪い例
+    rand(6) + 1
+
+    # 良い例
+    rand(1..6)
+    ```
+
 ## 文字列
 
 * <a name="string-interpolation"></a>
