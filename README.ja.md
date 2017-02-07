@@ -3289,20 +3289,20 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   ```Ruby
   timestamp = Time.now.to_i
-  
+
   # 悪い例
   timestamp.is_a? Fixnum
   timestamp.is_a? Bignum
-  
+
   # 良い例
   timestamp.is_a? Integer
   ```
 
 ## 文字列
 
-* <a name="pad-string-interpolation"></a>
+* <a name="string-interpolation"></a>
   文字列連結の代わりに文字列挿入や文字列整形を使いましょう。
-<sup>[[link](#pad-string-interpolation)]</sup>
+<sup>[[link](#string-interpolation)]</sup>
 
   ```Ruby
   # 悪い例
@@ -3313,18 +3313,6 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   # 良い例
   email_with_name = format('%s <%s>', user.name, user.email)
-  ```
-
-* <a name="string-interpolation"></a>
-  文字列挿入時には、括弧の内部にスペースを入れるべきではありません。
-<sup>[[link](#string-interpolation)]</sup>
-
-  ```Ruby
-  # 悪い例
-  "From: #{ user.first_name }, #{ user.last_name }"
-
-  # 良い例
-  "From: #{user.first_name}, #{user.last_name}"
   ```
 
 * <a name="consistent-string-literals"></a>
