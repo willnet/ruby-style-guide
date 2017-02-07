@@ -3250,8 +3250,6 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 * <a name="hash-key"></a>
   `Hash#has_key?`より`Hash#key?`を、
   `Hash#has_value?`より`Hash#value?`を用いましょう。
-    [ここ](http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/43765)
-  でMatzが述べているように、長い記法は廃止が検討されています。
 <sup>[[link](#hash-key)]</sup>
 
   ```Ruby
