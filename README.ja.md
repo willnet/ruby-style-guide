@@ -713,11 +713,11 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   first, second = multi_return
 
   # 良い例 - splatとともに使う場合
-  first, *list = [1, 2, 3, 4]
+  first, *list = [1, 2, 3, 4] # first => 1, list => [2, 3, 4]
 
-  hello_array = *'Hello'
+  hello_array = *'Hello' # => ["Hello"]
 
-  a = *(1..3)
+  a = *(1..3) # => [1, 2, 3]
   ```
 
 * <a name="trailing-underscore-variables"></a>
