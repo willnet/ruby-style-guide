@@ -2451,6 +2451,24 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   end
   ```
 
+* <a name="mixin-grouping"></a>
+  複数のミックスインは、別々の行に分割しましょう。
+<sup>[[link](#mixin-grouping)]</sup>
+
+  ```Ruby
+  # 悪い例
+  class Person
+    include Foo, Bar
+  end
+
+  # 良い例
+  class Person
+    # 複数のミックスインは分割された文になります
+    include Foo
+    include Bar
+  end
+  ```
+
 * <a name="file-classes"></a>
   クラスの中に複数行あるようなクラスをネストしてはいけません。
   それぞれのクラスごとにファイルに分けて、
