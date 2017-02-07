@@ -3364,6 +3364,37 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   # => "def test\n  some_method\n  other_method\nend\n"
   ```
 
+* <a name="squiggly-heredocs"></a>
+  インデントされた複数行の文字列には、Ruby 2.3 の、インデントされた
+  ヒアドキュメントを使用する必要があります。
+<sup>[[link](#squiggly-heredocs)]</sup>
+
+  ```Ruby
+  # 悪い例 - Powerpack の String#strip_margin を使用しています。
+  code = <<-END.strip_margin('|')
+    |def test
+    |  some_method
+    |  other_method
+    |end
+  END
+
+  # こちらも悪い例
+  code = <<-END
+  def test
+    some_method
+    other_method
+  end
+  END
+
+  # 良い例
+  code = <<~END
+    def test
+      some_method
+      other_method
+    end
+  END
+  ```
+
 ## 正規表現
 
 > なにか問題に突き当たった時、「わかった、正規表現を使えばいいんだ」と思う人がいますね。
