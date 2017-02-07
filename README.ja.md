@@ -2807,6 +2807,34 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   end
   ```
 
+* <a name="class-and-self"></a>
+  クラス(またはモジュール)メソッドが他のメソッドを呼び出す際は、
+  `self`または自分自身のクラス名の後に`.`を続けて使用しないようにしましょう。
+  これは、「サービスクラス」やそれが関数であるかのように扱われる他の同様の概念でよく見られます。
+  この規則は、そのようなクラスで反復的なボイラープレートを減らす傾向があります。
+  <sup>[[link](#class-and-self)]</sup>
+
+  ```Ruby
+  class TestClass
+    # 悪い例 -- クラスのリネームやメソッドの移動の際に余分な手間がかかります
+    def self.call(param1, param2)
+      TestClass.new(param1).call(param2)
+    end
+
+    # 悪い例 -- 必要以上に冗長です
+    def self.call(param1, param2)
+      self.new(param1).call(param2)
+    end
+
+    # 良い例
+    def self.call(param1, param2)
+      new(param1).call(param2)
+    end
+
+    # ...other methods...
+  end
+  ```
+
 ## 例外
 
 * <a name="prefer-raise-over-fail"></a>
