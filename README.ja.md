@@ -2532,6 +2532,36 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   end
   ```
 
+* <a name="accessor_mutator_method_names"></a>
+  アクセサやミューテータの場合、メソッド名の前に`get_`や`set_`をつけないようにしましょう。
+  アクセサ(リーダ)にはアトリビュートの名前を、ミューテータ(ライタ)には`attr_name=`
+  を使用するのはRubyの規約です。
+<sup>[[link](#accessor_mutator_method_names)]</sup>
+
+  ```Ruby
+  # 悪い例
+  class Person
+    def get_name
+      "#{@first_name} #{@last_name}"
+    end
+
+    def set_name(name)
+      @first_name, @last_name = name.split(' ')
+    end
+  end
+
+  # 良い例
+  class Person
+    def name
+      "#{@first_name} #{@last_name}"
+    end
+
+    def name=(name)
+      @first_name, @last_name = name.split(' ')
+    end
+  end
+  ```
+
 * <a name="attr"></a>
   `attr`の使用は避けましょう。代わりに`attr_reader`や`attr_accessor`を使いましょう。
 <sup>[[link](#attr)]</sup>
