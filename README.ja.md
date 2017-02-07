@@ -3084,7 +3084,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="hash-each"></a>
-  `Hash#key.each` の代わりに `Hash#each_key` を、 `Hsah#values.each` の代わりに
+  `Hash#keys.each` の代わりに `Hash#each_key` を、 `Hsah#values.each` の代わりに
   `Hash#each_value` を用いましょう。
 <sup>[[link](#hash-each)]</sup>
 
