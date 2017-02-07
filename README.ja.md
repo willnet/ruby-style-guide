@@ -2183,11 +2183,6 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   end
   ```
 
-* <a name="reduce-blocks"></a>
-  短いブロックと共に`reduce`を使うとき、引数は`|a, e|`と名づけましょう。
-  (accumulator, element).
-<sup>[[link](#reduce-blocks)]</sup>
-
 * <a name="other-arg"></a>
   二項演算子を定義するとき、引数名は`other`を用いましょう
   (`<<`と`[]`は意味が違ってくるので、このルールの例外です)。
