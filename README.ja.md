@@ -71,7 +71,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 * [ドイツ語](https://github.com/arbox/de-ruby-style-guide/blob/master/README-deDE.md)
 * [日本語](https://github.com/fortissimo1997/ruby-style-guide/blob/japanese/README.ja.md)
 * [韓国語](https://github.com/dalzony/ruby-style-guide/blob/master/README-koKR.md)
-* [ポルトガル語](https://github.com/rubensmabueno/ruby-style-guide/blob/master/README-PT-BR.md)
+* [ポルトガル語 (pt-BR)](https://github.com/rubensmabueno/ruby-style-guide/blob/master/README-PT-BR.md)
 * [ロシア語](https://github.com/arbox/ruby-style-guide/blob/master/README-ruRU.md)
 * [スペイン語](https://github.com/alemohamad/ruby-style-guide/blob/master/README-esLA.md)
 * [ベトナム語](https://github.com/CQBinh/ruby-style-guide/blob/master/README-viVN.md)
