@@ -2239,7 +2239,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 <sup>[[link](#comment-upkeep)]</sup>
 
 > 良いコードは良いジョークのようだ - なんの説明もいらない。<br>
-> -- Russ Olsen
+> &mdash; プログラマの格言 [Russ Olsen](http://eloquentruby.com/blog/2011/03/07/good-code-and-good-jokes/)
 
 * <a name="refactor-dont-comment"></a>
   悪いコードを説明するコメントは避けましょう。
