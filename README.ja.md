@@ -3083,6 +3083,23 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   hash.value?(value)
   ```
 
+* <a name="hash-each"></a>
+  `Hash#key.each` の代わりに `Hash#each_key` を、 `Hsah#values.each` の代わりに
+  `Hash#each_value` を用いましょう。
+<sup>[[link](#hash-each)]</sup>
+
+  ```Ruby
+  # 悪い例
+  hash.keys.each { |k| p k }
+  hash.values.each { |v| p v }
+  hash.each { |k, _v| p k }
+  hash.each { |_k, v| p v }
+
+  # 良い例
+  hash.each_key { |k| p k }
+  hash.each_value { |v| p v }
+  ```
+
 * <a name="hash-fetch"></a>
   存在すべきキーを扱う時は、`Hash#fetch`を用いましょう。
 <sup>[[link](#hash-fetch)]</sup>
