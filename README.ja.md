@@ -88,6 +88,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 * [クラスとモジュール](#クラスとモジュール)
 * [例外](#例外)
 * [コレクション](#コレクション)
+* [数値](#数値)
 * [文字列](#文字列)
 * [正規表現](#正規表現)
 * [パーセントリテラル](#パーセントリテラル)
@@ -1506,7 +1507,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   # good
   'ruby' == some_str
-  1.0.eql? x # eql? はFixnumとFloatの1を識別したいのであれば意味があります
+  1.0.eql? x # eql? はIntegerとFloatの1を識別したいのであれば意味があります
   ```
 
 * <a name="no-cryptic-perlisms"></a>
@@ -3277,6 +3278,24 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
       @awesome_things
     end
   end
+  ```
+
+## 数値
+
+* <a name="integer-type-checking"></a>
+  整数型の型をチェックする為に、`Integer`を使用して下さい。
+  `Fixnum`はプラットフォームに依存するため、32ビットマシンと64ビットマシンで異なる結果が返されます。
+<sup>[[link](#integer-type-checking)]</sup>
+
+  ```Ruby
+  timestamp = Time.now.to_i
+  
+  # 悪い例
+  timestamp.is_a? Fixnum
+  timestamp.is_a? Bignum
+  
+  # 良い例
+  timestamp.is_a? Integer
   ```
 
 ## 文字列
