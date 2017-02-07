@@ -571,19 +571,26 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   num = 1_000_000
   ```
 
-* <a name="octal-literals"></a>
-  8進数リテラルには、`0`や`0O`の代わりに`0o`を使用しましょう。
-<sup>[[link](#octal-literals)]</sup>
+* <a name="numeric-literal-prefixes"></a>
+  数値リテラルのプレフィックスには、英小文字を使用しましょう。
+  8進数には`0o`を、16進数には`0x`を、2進数には`0b`を使用します。
+  10進数には`0d`を使用しません。
+<sup>[[link](#numeric-literal-prefixes)]</sup>
 
   ```Ruby
   # 悪い例
   num = 01234
-
-  # bad - 0と大文字のOを区別することは難しい
   num = 0O1234
+  num = 0X12AB
+  num = 0B10101
+  num = 0D1234
+  num = 0d1234
 
   # good - プレフィックスと数字の分離が容易
   num = 0o1234
+  num = 0x12AB
+  num = 0b10101
+  num = 1234
   ```
 
 * <a name="rdoc-conventions"></a>
