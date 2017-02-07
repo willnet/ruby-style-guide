@@ -2008,6 +2008,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   :someSymbol
 
   someVar = 5
+  var_10  = 10
 
   def someMethod
     # some code
@@ -2020,7 +2021,34 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   # 良い例
   :some_symbol
 
+  some_var = 5
+  var10    = 10
+
   def some_method
+    # some code
+  end
+  ```
+
+* <a name="snake-case-symbols-methods-vars-with-numbers"></a>
+  シンボル、メソッド、および変数名において、文字と数字を分離しないようにしましょう。
+<sup>[[link](#snake-case-symbols-methods-vars-with-numbers)]</sup>
+
+  ```Ruby
+  # 悪い例
+  :some_sym_1
+
+  some_var_1 = 1
+
+  def some_method_1
+    # some code
+  end
+
+  # 良い例
+  :some_sym1
+
+  some_var1 = 1
+
+  def some_method1
     # some code
   end
   ```
