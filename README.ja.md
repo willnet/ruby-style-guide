@@ -1350,7 +1350,8 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-self-unless-required"></a>
-  不要な`self`は避けましょう (`self`のアクセサへの書き込みでのみ必要です)。
+  不要な`self`は避けましょう
+  (`self`のアクセサへの書き込み、メソッド名が予約語の場合、オーバーロード可能なオペレータの場合でのみ必要です)。
 <sup>[[link](#no-self-unless-required)]</sup>
 
   ```Ruby
