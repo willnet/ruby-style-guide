@@ -1283,7 +1283,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 <sup>[[link](#single-line-blocks)]</sup>
 
   ```Ruby
-  names = %w(Bozhidar Steve Sarah)
+  names = %w[Bozhidar Steve Sarah]
 
   # 悪い例
   names.each do |name|
@@ -1763,11 +1763,11 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   ```Ruby
   # 悪い例
-  %w(one two three) * ', '
+  %w[one two three] * ', '
   # => 'one, two, three'
 
   # 良い例
-  %w(one two three).join(', ')
+  %w[one two three].join(', ')
   # => 'one, two, three'
   ```
 
@@ -3150,7 +3150,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   STATES = ['draft', 'open', 'closed']
 
   # 良い例
-  STATES = %w(draft open closed)
+  STATES = %w[draft open closed]
   ```
 
 * <a name="percent-i"></a>
@@ -3165,7 +3165,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   STATES = [:draft, :open, :closed]
 
   # 良い例
-  STATES = %i(draft open closed)
+  STATES = %i[draft open closed]
   ```
 
 * <a name="no-trailing-array-commas"></a>
@@ -3834,20 +3834,38 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 <sup>[[link](#percent-s)]</sup>
 
 * <a name="percent-literal-braces"></a>
-  パーセントリテラルの区切り文字は、`%r`を除いて`()`が好まれます。
-  正規表現の中では、括弧は色々なシーンで使われるので、
-  正規表現の内容によっては、より使われる機会の少ない`{`のほうが
-  良い選択となることがあるかもしれません。
+  さまざまな種類のパーセントリテラルに最も適した括弧を使用します。
 <sup>[[link](#percent-literal-braces)]</sup>
+  - 文字列リテラル(`%q`, `%Q`)には`()`を使用しましょう。
+  - 配列リテラル(`%w`, `%i`, `%W`, `%I`)には、標準の配列リテラルに
+  合わせて`[]`を使用しましょう。
+  - 正規表現リテラル(`%r`)には、`{}`を使用しましょう。
+  正規表現の中に括弧が現れることが多いためです。
+  `{`が最も一般的でない為、`%r`の区切り文字には最適です。
+  - その他のリテラル(例えば `%s`, `%x`)には`()`を使用しましょう。
 
   ```Ruby
   # 悪い例
-  %w[one two three]
   %q{"Test's king!", John said.}
 
   # 良い例
-  %w(one two three)
   %q("Test's king!", John said.)
+
+  # 悪い例
+  %w(one two three)
+  %i(one two three)
+
+  # 良い例
+  %w[one two three]
+  %i[one two three]
+
+  # 悪い例
+  %r((\w+)-(\d+))
+  %r{\w{1,2}\d{2,5}}
+
+  # 良い例
+  %r{(\w+)-(\d+)}
+  %r|\w{1,2}\d{2,5}|
   ```
 
 ## メタプログラミング
