@@ -1012,28 +1012,29 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-and-or-or"></a>
-  `and`と`or`の使用は禁止です。使うべき理由がないです。
-   常に、代わりに`&&`と`||`を使いましょう。
+  `and`と`or`の使用は禁止です。可読性を良くするとしても、バグを埋め込む可能性が高いため使用に値しません。
+   boolean式では常に、代わりに`&&`と`||`を使いましょう。
+   フロー制御では`if`と`unless`を使いましょう。`&&`と`||`も許容されますが、あまり明確ではありません。
 <sup>[[link](#no-and-or-or)]</sup>
 
   ```Ruby
   # 悪い例
   # boolean式
-  if some_condition and some_other_condition
-    do_something
-  end
+  ok = got_needed_arguments and arguments_are_valid
 
   # 制御構文
-  document.saved? or document.save!
+  document.save or fail(RuntimError, "Failed to save document!")
 
   # 良い例
   # boolean式
-  if some_condition && some_other_condition
-    do_something
-  end
+  ok = got_needed_arguments && arguments_are_valid
 
   # 制御構文
-  document.saved? || document.save!
+  fail(RuntimeError, "Failed to save document!") unless document.save
+
+  # ok
+  # 制御構文
+  document.save || fail(RuntimeError, "Failed to save document!")
   ```
 
 * <a name="no-multiline-ternary"></a>
