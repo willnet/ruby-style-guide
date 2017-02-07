@@ -1885,7 +1885,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   # 悪い例
   def compute_thing(thing)
     if thing[:foo]
-      update_with_bar(thing)
+      update_with_bar(thing[:foo])
       if thing[:foo][:bar]
         partial_compute(thing)
       else
