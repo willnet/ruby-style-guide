@@ -802,7 +802,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-then"></a>
-  `then`は複数行にまたがる`if/unless`では使ってはいけません。
+  `then`は複数行にまたがる`if`/`unless`では使ってはいけません。
 <sup>[[link](#no-then)]</sup>
 
   ```Ruby
@@ -818,7 +818,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="same-line-condition"></a>
-  複数行にまたがる`if/unless`では、条件式は常に`if/unless`と同じ行に置きましょう。
+  複数行にまたがる`if`/`unless`では、条件式は常に`if`/`unless`と同じ行に置きましょう。
 <sup>[[link](#same-line-condition)]</sup>
 
   ```Ruby
@@ -970,12 +970,12 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-multiline-ternary"></a>
-  複数行にまたがる三項演算子`?:`は避けましょう; 代わりに`if/unless`を使いましょう。
+  複数行にまたがる三項演算子`?:`は避けましょう; 代わりに`if`/`unless`を使いましょう。
 <sup>[[link](#no-multiline-ternary)]</sup>
 
 * <a name="if-as-a-modifier"></a>
-  本文が１行のときは、`if/unless`修飾子を優先的に使いましょう。
-  他の良い代替案としては`&&/||`を使った制御構文があります。
+  本文が１行のときは、`if`/`unless`修飾子を優先的に使いましょう。
+  他の良い代替案としては`&&`/`||`を使った制御構文があります。
 <sup>[[link](#if-as-a-modifier)]</sup>
 
   ```Ruby
@@ -992,7 +992,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-multiline-if-modifiers"></a>
-  複数行に渡るような些細とは言えない規模のブロックに`if/unless`修飾子を用いるのは避けましょう。
+  複数行に渡るような些細とは言えない規模のブロックに`if`/`unless`修飾子を用いるのは避けましょう。
 <sup>[[link](#no-multiline-if-modifiers)]</sup>
 
   ```Ruby
@@ -1010,8 +1010,8 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-nested-modifiers"></a>
-  `if/unless/while/until` 修飾子をネストして利用しないようにしましょう。
-  可能であれば `&&/||` を使いましょう。
+  `if`/`unless`/`while`/`until` 修飾子をネストして利用しないようにしましょう。
+  可能であれば `&&`/`||` を使いましょう。
 <sup>[[link](#no-nested-modifiers)]</sup>
 
   ```Ruby
@@ -1062,7 +1062,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-parens-if"></a>
-  `if/unless/while/until`の条件式の周囲を括弧で括らないようにしましょう。
+  `if`/`unless`/`while`/`until`の条件式の周囲を括弧で括らないようにしましょう。
 <sup>[[link](#no-parens-if)]</sup>
 
   ```Ruby
