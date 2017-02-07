@@ -74,7 +74,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 * [ポルトガル語](https://github.com/rubensmabueno/ruby-style-guide/blob/master/README-PT-BR.md)
 * [ロシア語](https://github.com/arbox/ruby-style-guide/blob/master/README-ruRU.md)
 * [スペイン語](https://github.com/alemohamad/ruby-style-guide/blob/master/README-esLA.md)
-* [ベトナム語](https://github.com/scrum2b/ruby-style-guide/blob/master/README-viVN.md)
+* [ベトナム語](https://github.com/CQBinh/ruby-style-guide/blob/master/README-viVN.md)
 
 ## 目次
 
