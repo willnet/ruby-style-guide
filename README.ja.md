@@ -712,23 +712,34 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
 * <a name="trailing-underscore-variables"></a>
   多重代入においては不要なアンダースコア変数を後ろに並べないようにしましょう。
-  アンダースコア変数は左辺にsplat変数を定義するときには必要です。
-  その場合、splat変数はアンダースコアではありえないです。
+  名前付きアンダースコア変数はコンテキストを提供するため、 アンダースコア変数
+  より優先される必要があります。
+  アンダースコア変数は、その代入より左にスプラット変数が存在する場合には必要です。
+  その場合、スプラット変数はアンダースコア変数ではありません。
 <sup>[[link]](#trailing-underscore-variables)</sup>
 
   ```Ruby
   # 悪い例
-  a, b, _ = *foo
-  a, _, _ = *foo
-  a, *_ = *foo
+  foo = 'one,two,three,four,five'
+  # 有用な情報を提供しない不要な代入です。
+  first, second, _ = foo.split(',')
+  first, _, _ = foo.split(',')
+  first, *_ = foo.split(',')
 
   # 良い例
-  *a, _ = *foo
-  *a, b, _ = *foo
-  a, = *foo
-  a, b, = *foo
-  a, _b = *foo
-  a, _b, = *foo
+  foo = 'one,two,three,four,five'
+  # このアンダースコア変数は、最後の要素を除いた全ての要素が必要で
+  # あることを示すために必要です。
+  *beginning, _ = foo.split(',')
+  *beginning, something, _ = foo.split(',')
+
+  a, = foo.split(',')
+  a, b, = foo.split(',')
+  # 未使用変数への代入は必須ではありませんが、この代入は有用な情報を
+  # 提供します。
+  first, _second = foo.split(',')
+  first, _second, = foo.split(',')
+  first, *_ending = foo.split(',')
   ```
 
 * <a name="no-for-loops"></a>
