@@ -2346,7 +2346,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
     include AnotherModule
 
     # 内部クラス
-    CustomErrorKlass = Class.new(StandardError)
+    CustomError = Class.new(StandardError)
 
     # 次に定数
     SOME_CONSTANT = 20
