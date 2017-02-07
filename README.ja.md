@@ -410,10 +410,10 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```Ruby
   # 悪い例 - 簡単に引数を移動・追加・削除できますが、それでもお奨めできません
   some_method(
-               size,
-               count,
-               color,
-             )
+    size,
+    count,
+    color,
+  )
 
   # 悪い例
   some_method(size, count, color, )
