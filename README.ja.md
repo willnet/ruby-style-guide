@@ -719,9 +719,9 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
     ```Ruby
     # 悪い例
-    expect(bowling.score).to eq 0
+    validates(:name, presence: true)
     # 良い例
-    expect(bowling.score).to eq(0)
+    validates :name, presence: true
     ```
 
   * Rubyで「キーワード」と認識されているメソッド:
