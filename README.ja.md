@@ -561,7 +561,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="rdoc-conventions"></a>
-  APIドキュメントを書くなら、RDocとその規約に従いましょう。
+  APIドキュメントを書くなら、[RDoc][rdoc]とその規約に従いましょう。
   コメント行と`def`の間に空行を入れてはいけません。
 <sup>[[link](#rdoc-conventions)]</sup>
 
@@ -1144,20 +1144,38 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   ```Ruby
   class Person
+    # 悪い例
+    attr_reader(:name, :age)
+    # 良い例
     attr_reader :name, :age
 
-    # 省略
+    # 本体は省略
   end
 
+  # 悪い例
+  temperance = Person.new 'Temperance', 30
+  # 良い例
   temperance = Person.new('Temperance', 30)
-  temperance.name
 
+  # 悪い例
+  puts(temperance.age)
+  # 良い例
   puts temperance.age
 
+  # 悪い例
+  x = Math.sin y
+  # 良い例
   x = Math.sin(y)
+
+  # 悪い例
+  array.delete e
+  # 良い例
   array.delete(e)
 
-  bowling.score.should == 0
+  # 悪い例
+  expect(bowling.score).to eq 0
+  # 良い例
+  expect(bowling.score).to eq(0)
   ```
 
 * <a name="no-braces-opts-hash"></a>
@@ -1357,20 +1375,20 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   # 悪い例 (+ 警告が出ます)
   if v = array.grep(/foo/)
     do_something(v)
-    ...
+    # some code
   end
 
   # 良い例 (MRIはこれでも文句を言いますが、RuboCopでは問題ありません)
   if (v = array.grep(/foo/))
     do_something(v)
-    ...
+    # some code
   end
 
   # 良い例
   v = array.grep(/foo/)
   if v
     do_something(v)
-    ...
+    # some code
   end
   ```
 
@@ -1647,6 +1665,15 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   def something(x)
     unused_var, used_var = something_else(x)
+    # some code
+  end
+
+  # 良い例
+  result = hash.map { |_k, v| v + 1 }
+
+  def something(x)
+    _unused_var, used_var = something_else(x)
+    # some code
   end
 
   # 良い例
@@ -1654,6 +1681,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   def something(x)
     _, used_var = something_else(x)
+    # some code
   end
   ```
 
@@ -1951,18 +1979,18 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   someVar = 5
 
   def someMethod
-    ...
+    # some code
   end
 
   def SomeMethod
-   ...
+    # some code
   end
 
   # 良い例
   :some_symbol
 
   def some_method
-    ...
+    # some code
   end
   ```
 
@@ -1973,32 +2001,32 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```Ruby
   # 悪い例
   class Someclass
-    ...
+    # some code
   end
 
   class Some_Class
-    ...
+    # some code
   end
 
   class SomeXml
-    ...
+    # some code
   end
 
   class XmlSomething
-    ...
+    # some code
   end
 
   # 良い例
   class SomeClass
-    ...
+    # some code
   end
 
   class SomeXML
-    ...
+    # some code
   end
 
   class XMLSomething
-    ...
+    # some code
   end
   ```
 
@@ -2319,6 +2347,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
     end
 
     def self.some_other_method
+      # body omitted
     end
   end
 
@@ -2331,6 +2360,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
     end
 
     def some_other_method
+      # body omitted
     end
   end
   ```
@@ -2436,7 +2466,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 <sup>[[link](#attr)]</sup>
 
   ```Ruby
-  # 悪い例 - １つのアクセサしか作れません(1.9で廃止されました)
+  # 悪い例 - １つのアクセサしか作れません(Ruby 1.9で廃止されました)
   attr :something, true
   attr :one, :two, :three # attr_readerと同じです
 
@@ -2573,17 +2603,17 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```Ruby
   class SomeClass
     def public_method
-      # ...
+      # some code
     end
 
     private
 
     def private_method
-      # ...
+      # some code
     end
 
     def another_private_method
-      # ...
+      # some code
     end
   end
   ```
@@ -2733,6 +2763,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 <sup>[[link](#no-return-ensure)]</sup>
 
   ```Ruby
+  # 悪い例
   def foo
     raise
   ensure
@@ -2926,12 +2957,12 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```Ruby
   # 悪い例 - 明示的にファイルディスクリプタを閉じる必要が有ります
   f = File.open('testfile')
-    # ...
+  # ファイルに対する何らかのアクション
   f.close
 
   # 良い例 - ファイルディスクリプタは自動的に閉じられます
   File.open('testfile') do |f|
-    # ...
+    # ファイルに対する何らかのアクション
   end
   ```
 
@@ -3472,12 +3503,12 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```Ruby
   # 悪い例
   /(regexp)/ =~ string
-  ...
+  # some code
   process Regexp.last_match(1)
 
   # 良い例
   /(?<meaningful_var>regexp)/ =~ string
-  ...
+  # some code
   process meaningful_var
   ```
 
@@ -3725,15 +3756,15 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
     private
 
     def reset_token
-      ...
+      # some code
     end
 
     def create_token
-      ...
+      # some code
     end
 
     def activate!
-      ...
+      # some code
     end
   end
 
@@ -3899,3 +3930,4 @@ Rubyのコードスタイルに興味のある全ての人と共に取り組む�
 [trpl]: http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177
 [transmuter]: https://github.com/kalbasit/transmuter
 [RuboCop]: https://github.com/bbatsov/rubocop
+[rdoc]: http://rdoc.sourceforge.net/doc/
