@@ -2062,6 +2062,44 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   boolean値を返さないメソッドは、疑問符で終わるべきではないです。
 <sup>[[link](#bool-methods-qmark)]</sup>
 
+* <a name="bool-methods-prefix"></a>
+  述語メソッドに `is`、` does`、 `can`のような補助動詞をつけるべきではありません。
+  これらの単語は冗長で、Rubyコアライブラリの述語メソッドのスタイル
+  ( `empty？`や `include？`など)と矛盾しています。
+<sup>[[link](#bool-methods-prefix)]</sup>
+
+  ```Ruby
+  # 悪い例
+  class Person
+    def is_tall?
+      true
+    end
+
+    def can_play_basketball?
+      false
+    end
+
+    def does_like_candy?
+      true
+    end
+  end
+
+  # 良い例
+  class Person
+    def tall?
+      true
+    end
+
+    def basketball_player?
+      false
+    end
+
+    def likes_candy?
+      true
+    end
+  end
+  ```
+
 * <a name="dangerous-method-bang"></a>
   *危険* な可能性のあるメソッド
   (引数や`self`を変更するようなメソッドや、
