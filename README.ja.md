@@ -2335,6 +2335,73 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   それらのキーワードは`README`やそれに類するものに書いておきましょう。
 <sup>[[link](#document-annotations)]</sup>
 
+### マジックコメント
+
+* <a name="magic-comments-first"></a>
+  マジックコメントは、全てのコメントとコードよりも上に置きましょう。
+  シバン(Shebang)が必要な場合にのみ、シバンの下にマジックコメントを移動する必要があります。
+<sup>[[link](#magic-comments-first)]</sup>
+
+  ```Ruby
+  # 良い例
+  # frozen_string_literal: true
+  # Some documentation about Person
+  class Person
+  end
+
+  # 悪い例
+  # Some documentation about Person
+  # frozen_string_literal: true
+  class Person
+  end
+  ```
+
+  ```Ruby
+  # 良い例
+  #!/usr/bin/env ruby
+  # frozen_string_literal: true
+  App.parse(ARGV)
+
+  # 悪い例
+  # frozen_string_literal: true
+  #!/usr/bin/env ruby
+  App.parse(ARGV)
+  ```
+
+* <a name="one-magic-comment-per-line"></a>
+  マジックコメントが複数必要な場合、一つのマジックコメントは一つの行に置きましょう。
+<sup>[[link](#one-magic-comment-per-line)]</sup>
+
+  ```Ruby
+  # 良い例
+  # frozen_string_literal: true
+  # encoding: ascii-8bit
+
+  # 悪い例
+  # -*- frozen_string_literal: true; encoding: ascii-8bit -*-
+  ```
+
+* <a name="separate-magic-comments-from-code"></a>
+  マジックコメントは、コードやドキュメントから空行で区切りましょう。
+<sup>[[link](#separate-magic-comments-from-code)]</sup>
+
+  ```Ruby
+  # 良い例
+  # frozen_string_literal: true
+
+  # Some documentation for Person
+  class Person
+    # Some code
+  end
+
+  # 悪い例
+  # frozen_string_literal: true
+  # Some documentation for Person
+  class Person
+    # Some code
+  end
+  ```
+
 ## クラスとモジュール
 
 * <a name="consistent-classes"></a>
