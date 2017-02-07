@@ -2453,7 +2453,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   # より良い例
   Person = Struct.new(:first_name, :last_name) do
   end
-  ````
+  ```
 
 * <a name="no-extend-struct-new"></a>
   `Struct.new`で初期化されたインスタンスを拡張してはいけません。
@@ -2468,7 +2468,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   # 良い例
   Person = Struct.new(:first_name, :last_name)
-  ````
+  ```
 
 * <a name="factory-methods"></a>
   あるクラスのインスタンス生成する追加の方法を提供したいときは、
