@@ -1023,7 +1023,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ok = got_needed_arguments and arguments_are_valid
 
   # 制御構文
-  document.save or fail(RuntimError, "Failed to save document!")
+  document.save or fail(RuntimeError, "Failed to save document!")
 
   # 良い例
   # boolean式
