@@ -992,7 +992,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   `!!`は避けましょう。
 <sup>[[link](#no-bang-bang)]</sup>
 
-  `!!`は値をブーリアンに変換しますが、制御式の条件で明示的な変換は必要ありません。
+  `!!`は値をbooleanに変換しますが、制御式の条件で明示的な変換は必要ありません。
   あなたの意図を隠すだけです。
   `nil`チェックをしたい場合、代わりに`nil?`を使用しましょう。
 
@@ -1781,7 +1781,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   paths = [paths] unless paths.is_a? Array
   paths.each { |path| do_something(path) }
 
-  # 悪い例 (常に新しい`Array`のインスタンスを生成します)
+  # 悪い例 (常に新しいArrayのインスタンスを生成します)
   [*paths].each { |path| do_something(path) }
 
   # 良い例 (そして少し読みやすいです)
@@ -2124,7 +2124,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 <sup>[[link](#bool-methods-qmark)]</sup>
 
 * <a name="bool-methods-prefix"></a>
-  述語メソッドに `is`、` does`、 `can`のような補助動詞をつけるべきではありません。
+  述語メソッドに `is`、` does`、 `can`のような助動詞をつけるべきではありません。
   これらの単語は冗長で、Rubyコアライブラリの述語メソッドのスタイル
   ( `empty？`や `include？`など)と矛盾しています。
 <sup>[[link](#bool-methods-prefix)]</sup>
@@ -2463,7 +2463,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   # 良い例
   class Person
-    # 複数のミックスインは分割された文になります
+    # 複数のミックスインは分割された文にします
     include Foo
     include Bar
   end
@@ -3668,7 +3668,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
 * <a name="squiggly-heredocs"></a>
   インデントされた複数行の文字列には、Ruby 2.3 の、インデントされた
-  ヒアドキュメントを使用する必要があります。
+  ヒアドキュメントを使いましょう。
 <sup>[[link](#squiggly-heredocs)]</sup>
 
   ```Ruby
@@ -3704,7 +3704,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 <sup>[[link](#time-now)]</sup>
 
 * <a name="no-datetime"></a>
-  改暦の説明の必要がある場合を除いて、`DateTime`を使用しないようにしましょう。
+  改暦を考慮する必要がある場合を除いて、`DateTime`を使用しないようにしましょう。
   もし必要な場合は、`start`引数を明示的にしていして意図を明示して下さい。
 <sup>[[link](#no-datetime)]</sup>
 
