@@ -3,10 +3,8 @@
 > ロールモデルが重要なのだ。 <br>
 > -- アレックス・マーフィー巡査 / ロボコップ
 
-Rubyディベロッパーとして、私は常にあることに悩まされてきました -
-Pythonにはプログラミングスタイルのすばらしい基準
-([PEP-8][])
-がある一方で、
+Rubyディベロッパーとして、私は常にあることに悩まされてきました &mdash;
+Pythonにはプログラミングスタイルのすばらしい基準 ([PEP-8][]) がある一方で、
 Rubyにはコーディングスタイルやベストプラクティスに関する公式のガイドがこれまで存在してきませんでした。
 私にはスタイルは重要なことだとしか思われないのにです。
 Rubyが持っているような素晴らしいハッカーコミュニティは、
@@ -41,7 +39,7 @@ Rubyのための慣習、語法、スタイル規定は、
 ルールの後ろにその根拠も付け加えるように努めています
 (そのような根拠が省略されているときは、自明のものと判断したとお考えください)。
 
-私はこれら全てのルールをどこからともなく考えついたわけではありません -
+私はこれら全てのルールをどこからともなく考えついたわけではありません &mdash;
 これらのほとんどは、私の職業SEとしての長い経験と、
 Rubyコミュニティのメンバーからの意見や提案、
 また、["Programming Ruby"][pickaxe]や、
@@ -60,7 +58,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 ルールの衝突が発生した場合は、
 そのプロジェクトにおいては、プロジェクト固有のガイドを優先してください。
 
-このガイドのPDFやHTMLのコピーは[Transmuter][]を使って生成できます。
+このガイドのPDFやHTMLのコピーは[Pandoc][]を使って生成できます。
 
 [RuboCop][]は、
 このスタイルガイドに基づいたコード分析器です。
@@ -73,10 +71,10 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 * [ドイツ語](https://github.com/arbox/de-ruby-style-guide/blob/master/README-deDE.md)
 * [日本語](https://github.com/fortissimo1997/ruby-style-guide/blob/japanese/README.ja.md)
 * [韓国語](https://github.com/dalzony/ruby-style-guide/blob/master/README-koKR.md)
-* [ポルトガル語](https://github.com/rubensmabueno/ruby-style-guide/blob/master/README-PT-BR.md)
+* [ポルトガル語 (pt-BR)](https://github.com/rubensmabueno/ruby-style-guide/blob/master/README-PT-BR.md)
 * [ロシア語](https://github.com/arbox/ruby-style-guide/blob/master/README-ruRU.md)
 * [スペイン語](https://github.com/alemohamad/ruby-style-guide/blob/master/README-esLA.md)
-* [ベトナム語](https://github.com/scrum2b/ruby-style-guide/blob/master/README-viVN.md)
+* [ベトナム語](https://github.com/CQBinh/ruby-style-guide/blob/master/README-viVN.md)
 
 ## 目次
 
@@ -88,7 +86,9 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 * [クラスとモジュール](#クラスとモジュール)
 * [例外](#例外)
 * [コレクション](#コレクション)
+* [数値](#数値)
 * [文字列](#文字列)
+* [日時](#日時)
 * [正規表現](#正規表現)
 * [パーセントリテラル](#パーセントリテラル)
 * [メタプログラミング](#メタプログラミング)
@@ -124,7 +124,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
 * <a name="crlf"></a>
   Unix-styleの改行にしましょう。
-(*BSD/Solaris/Linux/OS X ユーザーはデフォルトで設定されています。
+(\*BSD/Solaris/Linux/OS X ユーザーはデフォルトで設定されています。
   Windows ユーザーは特に注意が必要です。)
 <sup>[[link](#crlf)]</sup>
 
@@ -205,7 +205,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="spaces-operators"></a>
-  演算子の前後、コンマ、コロン、セミコロンの後ろ、`{`の前後、`}`の前にはスペースを入れましょう。
+  演算子の前後、コンマ、コロン、セミコロンの後ろにはスペースを入れましょう。
   スペースはRubyのインタープリタには(ほとんどの場合)重要ではありませんが、
   スペースの適切な使用は、読みやすいコードを書くための鍵です。
 <sup>[[link](#spaces-operators)]</sup>
@@ -214,7 +214,6 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   sum = 1 + 2
   a, b = 1, 2
   1 > 2 ? true : false; puts 'Hi'
-  [1, 2, 3].each { |e| puts e }
   class FooError < StandardError; end
   ```
 
@@ -228,9 +227,28 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   e = M * c**2
   ```
 
+* <a name="spaces-braces"></a>
+  `(`, `[`の後ろ、`]`, `)`の前にはスペースは入れません。
+  `{`の前後、`}`の前にはスペースが必要です。
+<sup>[[link](#spaces-braces)]</sup>
+
+  ```Ruby
+  # 悪い例
+  some( arg ).other
+  [ 1, 2, 3 ].each{|e| puts e}
+
+  # 良い例
+  some(arg).other
+  [1, 2, 3].each { |e| puts e }
+  ```
+
   `{` と `}` については多少の解説が必要でしょう。
   ブロック、ハッシュリテラル、そして文字列埋め込み式にそれぞれ使われるからです。
+
   ハッシュリテラルでは、２つのスタイルが許容できます。
+  １つ目の書き方は、わずかながら少し読みやすいです(そして、Rubyコミュニティでより広く使われているのはこちらかもしれません)。
+  ２つ目の書き方は、ブロックとハッシュを視覚的に差別化できるという点で有利です。
+  どちらでも片方を採用すれば、常に同じ方式を採用しましょう。
 
   ```Ruby
   # 良い例 - スペースを { の後と } の前に入れる
@@ -240,22 +258,14 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   {one: 1, two: 2}
   ```
 
-  １つ目の書き方は、わずかながら少し読みやすいです(そして、Rubyコミュニティでより広く使われているのはこちらかもしれません)。
-  ２つ目の書き方は、ブロックとハッシュを視覚的に差別化できるという点で有利です。
-  どちらでも片方を採用すれば、常に同じ方式を採用しましょう。
-
-* <a name="no-spaces-braces"></a>
-  `(`、 `[`の後と、`]`、 `)`の前にはスペースは入れません。
-<sup>[[link](#no-spaces-braces)]</sup>
+  文字列埋め込み式では、中括弧の内側に空白を入れないでください。
 
   ```Ruby
   # 悪い例
-  some( arg ).other
-  [ 1, 2, 3 ].size
+  "From: #{ user.first_name }, #{ user.last_name }"
 
   # 良い例
-  some(arg).other
-  [1, 2, 3].size
+  "From: #{user.first_name}, #{user.last_name}"
   ```
 
 * <a name="no-space-bang"></a>
@@ -400,10 +410,10 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```Ruby
   # 悪い例 - 簡単に引数を移動・追加・削除できますが、それでもお奨めできません
   some_method(
-               size,
-               count,
-               color,
-             )
+    size,
+    count,
+    color,
+  )
 
   # 悪い例
   some_method(size, count, color, )
@@ -453,8 +463,8 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
 * <a name="consistent-multi-line-chains"></a>
   一貫した複数行のメソッドチェーンのスタイルを採用しましょう。
-  Rubyコミュニティには2つのよく使われるスタイル - 先頭に`.`を付けるもの (Option A)、
-  末尾に`.`を付けるもの (Option B) - があり、
+  Rubyコミュニティには2つのよく使われるスタイル &mdash; 先頭に`.`を付けるもの (Option A)、
+  末尾に`.`を付けるもの (Option B) &mdash; があり、
   どちらも良いと考えられています。
 <sup>[[link](#consistent-multi-line-chains)]</sup>
 
@@ -560,8 +570,30 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   num = 1_000_000
   ```
 
+* <a name="numeric-literal-prefixes"></a>
+  数値リテラルのプレフィックスには、英小文字を使用しましょう。
+  8進数には`0o`を、16進数には`0x`を、2進数には`0b`を使用します。
+  10進数には`0d`を使用しません。
+<sup>[[link](#numeric-literal-prefixes)]</sup>
+
+  ```Ruby
+  # 悪い例
+  num = 01234
+  num = 0O1234
+  num = 0X12AB
+  num = 0B10101
+  num = 0D1234
+  num = 0d1234
+
+  # good - プレフィックスと数字の分離が容易
+  num = 0o1234
+  num = 0x12AB
+  num = 0b10101
+  num = 1234
+  ```
+
 * <a name="rdoc-conventions"></a>
-  APIドキュメントを書くなら、RDocとその規約に従いましょう。
+  APIドキュメントを書くなら、[RDoc][rdoc]とその規約に従いましょう。
   コメント行と`def`の間に空行を入れてはいけません。
 <sup>[[link](#rdoc-conventions)]</sup>
 
@@ -642,6 +674,74 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
    end
    ```
 
+* <a name="method-invocation-parens"></a>
+  メソッド呼び出しの引数の周りに括弧を使用しましょう。
+  `f((3 + 2) + 1)`のようにメソッドの最初の引数が開き括弧で始まる場合は、
+  特に括弧を用いましょう。
+<sup>[[link](#method-invocation-parens)]</sup>
+
+  ```Ruby
+  # 悪い例
+  x = Math.sin y
+  # 良い例
+  x = Math.sin(y)
+
+  # 悪い例
+  array.delete e
+  # 良い例
+  array.delete(e)
+
+  # 悪い例
+  temperance = Person.new 'Temperance', 30
+  # 良い例
+  temperance = Person.new('Temperance', 30)
+  ```
+
+  以下の場合は括弧を省略します
+
+  * 引数のないメソッド:
+
+    ```Ruby
+    # 悪い例
+    Kernel.exit!()
+    2.even?()
+    fork()
+    'test'.upcase()
+
+    # 良い例
+    Kernel.exit!
+    2.even?
+    fork
+    'test'.upcase
+    ```
+
+  * 内部DSLに含まれるメソッド(例えばRake, Rails, RSpec):
+
+    ```Ruby
+    # 悪い例
+    validates(:name, presence: true)
+    # 良い例
+    validates :name, presence: true
+    ```
+
+  * Rubyで「キーワード」と認識されているメソッド:
+
+    ```Ruby
+    class Person
+      # 悪い例
+      attr_reader(:name, :age)
+      # 良い例
+      attr_reader :name, :age
+
+      # body omitted
+    end
+
+    # 悪い例
+    puts(temperance.age)
+    # 良い例
+    puts temperance.age
+    ```
+
 * <a name="optional-arguments"></a>
   オプショナル引数は引数リストの最後に定義しましょう。
   引数リストの先頭にオプショナル引数があるメソッドを呼んだ場合、
@@ -663,9 +763,9 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
     puts "#{a}, #{b}, #{c}, #{d}"
   end
 
-  some_method('w', 'x') # => 'w, x, 1, 2'
-  some_method('w', 'x', 'y') # => 'w, x, y, 2'
-  some_method('w', 'x', 'y', 'z') # => 'w, x, y, z'
+  some_method('w', 'x') # => '1, 2, w, x'
+  some_method('w', 'x', 'y') # => 'y, 2, w, x'
+  some_method('w', 'x', 'y', 'z') # => 'y, z, w, x'
   ```
 * <a name="parallel-assignment"></a>
   変数を定義するために多重代入を使うのは避けましょう。
@@ -703,32 +803,43 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   first, second = multi_return
 
   # 良い例 - splatとともに使う場合
-  first, *list = [1, 2, 3, 4]
+  first, *list = [1, 2, 3, 4] # first => 1, list => [2, 3, 4]
 
-  hello_array = *'Hello'
+  hello_array = *'Hello' # => ["Hello"]
 
-  a = *(1..3)
+  a = *(1..3) # => [1, 2, 3]
   ```
 
 * <a name="trailing-underscore-variables"></a>
   多重代入においては不要なアンダースコア変数を後ろに並べないようにしましょう。
-  アンダースコア変数は左辺にsplat変数を定義するときには必要です。
-  その場合、splat変数はアンダースコアではありえないです。
+  アンダースコア変数は名前が付いていたほうがコンテキストを明示できるので、
+  名前をつけておいたほうが良いでしょう。
+  アンダースコア変数は、その代入より左にスプラット変数が存在する場合には必要です。
+  その場合、スプラット変数はアンダースコア変数ではありません。
 <sup>[[link]](#trailing-underscore-variables)</sup>
 
   ```Ruby
   # 悪い例
-  a, b, _ = *foo
-  a, _, _ = *foo
-  a, *_ = *foo
+  foo = 'one,two,three,four,five'
+  # 有用な情報を提供しない不要な代入です。
+  first, second, _ = foo.split(',')
+  first, _, _ = foo.split(',')
+  first, *_ = foo.split(',')
 
   # 良い例
-  *a, _ = *foo
-  *a, b, _ = *foo
-  a, = *foo
-  a, b, = *foo
-  a, _b = *foo
-  a, _b, = *foo
+  foo = 'one,two,three,four,five'
+  # このアンダースコア変数は、最後の要素を除いた全ての要素が必要で
+  # あることを示すために必要です。
+  *beginning, _ = foo.split(',')
+  *beginning, something, _ = foo.split(',')
+
+  a, = foo.split(',')
+  a, b, = foo.split(',')
+  # 未使用変数への代入は必須ではありませんが、この代入は有用な情報を
+  # 提供します。
+  first, _second = foo.split(',')
+  first, _second, = foo.split(',')
+  first, *_ending = foo.split(',')
   ```
 
 * <a name="no-for-loops"></a>
@@ -758,7 +869,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-then"></a>
-  `then`は複数行にまたがる`if/unless`では使ってはいけません。
+  `then`は複数行にまたがる`if`/`unless`では使ってはいけません。
 <sup>[[link](#no-then)]</sup>
 
   ```Ruby
@@ -774,7 +885,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="same-line-condition"></a>
-  複数行にまたがる`if/unless`では、条件式は常に`if/unless`と同じ行に置きましょう。
+  複数行にまたがる`if`/`unless`では、条件式は常に`if`/`unless`と同じ行に置きましょう。
 <sup>[[link](#same-line-condition)]</sup>
 
   ```Ruby
@@ -881,6 +992,10 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   `!!`は避けましょう。
 <sup>[[link](#no-bang-bang)]</sup>
 
+  `!!`は値をbooleanに変換しますが、制御式の条件で明示的な変換は必要ありません。
+  あなたの意図を隠すだけです。
+  `nil`チェックをしたい場合、代わりに`nil?`を使用しましょう。
+
   ```Ruby
   # 悪い例
   x = 'test'
@@ -889,49 +1004,46 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
     # body omitted
   end
 
-  x = false
-  # 二重否定はbooleanとして役に立ちません
-  !!x # => false
-
   # 良い例
   x = 'test'
-  unless x.nil?
+  if x
     # body omitted
   end
   ```
 
 * <a name="no-and-or-or"></a>
-  `and`と`or`の使用は禁止です。使うべき理由がないです。
-   常に、代わりに`&&`と`||`を使いましょう。
+  `and`と`or`の使用は禁止です。可読性を良くするとしても、バグを埋め込む可能性が高いため使用に値しません。
+   boolean式では常に、代わりに`&&`と`||`を使いましょう。
+   フロー制御では`if`と`unless`を使いましょう。`&&`と`||`も許容されますが、あまり明確ではありません。
 <sup>[[link](#no-and-or-or)]</sup>
 
   ```Ruby
   # 悪い例
   # boolean式
-  if some_condition and some_other_condition
-    do_something
-  end
+  ok = got_needed_arguments and arguments_are_valid
 
   # 制御構文
-  document.saved? or document.save!
+  document.save or fail(RuntimeError, "Failed to save document!")
 
   # 良い例
   # boolean式
-  if some_condition && some_other_condition
-    do_something
-  end
+  ok = got_needed_arguments && arguments_are_valid
 
   # 制御構文
-  document.saved? || document.save!
+  fail(RuntimeError, "Failed to save document!") unless document.save
+
+  # ok
+  # 制御構文
+  document.save || fail(RuntimeError, "Failed to save document!")
   ```
 
 * <a name="no-multiline-ternary"></a>
-  複数行にまたがる三項演算子`?:`は避けましょう; 代わりに`if/unless`を使いましょう。
+  複数行にまたがる三項演算子`?:`は避けましょう; 代わりに`if`/`unless`を使いましょう。
 <sup>[[link](#no-multiline-ternary)]</sup>
 
 * <a name="if-as-a-modifier"></a>
-  本文が１行のときは、`if/unless`修飾子を優先的に使いましょう。
-  他の良い代替案としては`&&/||`を使った制御構文があります。
+  本文が１行のときは、`if`/`unless`修飾子を優先的に使いましょう。
+  他の良い代替案としては`&&`/`||`を使った制御構文があります。
 <sup>[[link](#if-as-a-modifier)]</sup>
 
   ```Ruby
@@ -948,7 +1060,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-multiline-if-modifiers"></a>
-  複数行に渡るような些細とは言えない規模のブロックに`if/unless`修飾子を用いるのは避けましょう。
+  複数行に渡るような些細とは言えない規模のブロックに`if`/`unless`修飾子を用いるのは避けましょう。
 <sup>[[link](#no-multiline-if-modifiers)]</sup>
 
   ```Ruby
@@ -966,8 +1078,8 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-nested-modifiers"></a>
-  `if/unless/while/until` 修飾子をネストして利用しないようにしましょう。
-  可能であれば `&&/||` を使いましょう。
+  `if`/`unless`/`while`/`until` 修飾子をネストして利用しないようにしましょう。
+  可能であれば `&&`/`||` を使いましょう。
 <sup>[[link](#no-nested-modifiers)]</sup>
 
   ```Ruby
@@ -1017,9 +1129,9 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   end
   ```
 
-* <a name="no-parens-if"></a>
-  `if/unless/while/until`の条件式の周囲を括弧で括らないようにしましょう。
-<sup>[[link](#no-parens-if)]</sup>
+* <a name="no-parens-around-condition"></a>
+  条件式の周囲を括弧で括らないようにしましょう。
+<sup>[[link](#no-parens-around-condition)]</sup>
 
   ```Ruby
   # 悪い例
@@ -1123,32 +1235,6 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   end
   ```
 
-* <a name="no-dsl-parens"></a>
-  内部DSL(例えばRake、Rails、RSpec)や、
-  Rubyで「キーワード」と認識されているメソッド(例えば`attr_reader` や`puts`)や、
-  アトリビュートにアクセスするメソッドでは、
-  引数の周りの括弧を省略しましょう。
-  それ以外のすべてのメソッドでは、メソッド呼び出しの時に括弧を付けましょう。
-<sup>[[link](#no-dsl-parens)]</sup>
-
-  ```Ruby
-  class Person
-    attr_reader :name, :age
-
-    # 省略
-  end
-
-  temperance = Person.new('Temperance', 30)
-  temperance.name
-
-  puts temperance.age
-
-  x = Math.sin(y)
-  array.delete(e)
-
-  bowling.score.should == 0
-  ```
-
 * <a name="no-braces-opts-hash"></a>
   暗黙のオプションハッシュの外側の括弧は省略しましょう。
 <sup>[[link](#no-braces-opts-hash)]</sup>
@@ -1175,24 +1261,6 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   end
   ```
 
-* <a name="no-args-no-parens"></a>
-  引数のないメソッド呼び出しの括弧は省略しましょう。
-<sup>[[link](#no-args-no-parens)]</sup>
-
-  ```Ruby
-  # 悪い例
-  Kernel.exit!()
-  2.even?()
-  fork()
-  'test'.upcase()
-
-  # 良い例
-  Kernel.exit!
-  2.even?
-  fork
-  'test'.upcase
-  ```
-
 * <a name="single-action-blocks"></a>
   ブロック内で呼び出されるメソッドがただ１つである場合、簡略化されたproc呼び出しを用いましょう。
 <sup>[[link](#single-action-blocks)]</sup>
@@ -1215,7 +1283,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 <sup>[[link](#single-line-blocks)]</sup>
 
   ```Ruby
-  names = %w(Bozhidar Steve Sarah)
+  names = %w[Bozhidar Steve Sarah]
 
   # 悪い例
   names.each do |name|
@@ -1235,7 +1303,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
   `{...}`を用いた複数行のメソッドチェーンをOKと主張する人もいるかもしれないが、
-  自問してみてほしい - そのコードは本当に読みやすいだろうか？
+  自問してみてほしい &mdash; そのコードは本当に読みやすいだろうか？
   また、そのブロックの中はメソッドに切り出すことはできないのか？
 
 * <a name="block-argument"></a>
@@ -1283,7 +1351,8 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```
 
 * <a name="no-self-unless-required"></a>
-  不要な`self`は避けましょう (`self`のアクセサへの書き込みでのみ必要です)。
+  不要な`self`は避けましょう
+  (`self`のアクセサへの書き込み、メソッド名が予約語の場合、オーバーロード可能なオペレータの場合でのみ必要です)。
 <sup>[[link](#no-self-unless-required)]</sup>
 
   ```Ruby
@@ -1346,20 +1415,20 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   # 悪い例 (+ 警告が出ます)
   if v = array.grep(/foo/)
     do_something(v)
-    ...
+    # some code
   end
 
   # 良い例 (MRIはこれでも文句を言いますが、RuboCopでは問題ありません)
   if (v = array.grep(/foo/))
     do_something(v)
-    ...
+    # some code
   end
 
   # 良い例
   v = array.grep(/foo/)
   if v
     do_something(v)
-    ...
+    # some code
   end
   ```
 
@@ -1467,7 +1536,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   # good
   'ruby' == some_str
-  1.0.eql? x # eql? はFixnumとFloatの1を識別したいのであれば意味があります
+  1.0.eql? x # eql? はIntegerとFloatの1を識別したいのであれば意味があります
   ```
 
 * <a name="no-cryptic-perlisms"></a>
@@ -1496,13 +1565,6 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   # 良い例
   f(3 + 2) + 1
   ```
-
-* <a name="parens-as-args"></a>
-  メソッドの最初の引数が開き括弧で始まるならば、
-  常にメソッド呼び出しに括弧を用いましょう。
-  例えば次のように書きます
-`f((3 + 2) + 1)`。
-<sup>[[link](#parens-as-args)]</sup>
 
 * <a name="always-warn-at-runtime"></a>
   Rubyインタープリタを走らせるときは、常に`-w`オプションを付けましょう。
@@ -1636,6 +1698,15 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   def something(x)
     unused_var, used_var = something_else(x)
+    # some code
+  end
+
+  # 良い例
+  result = hash.map { |_k, v| v + 1 }
+
+  def something(x)
+    _unused_var, used_var = something_else(x)
+    # some code
   end
 
   # 良い例
@@ -1643,6 +1714,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   def something(x)
     _, used_var = something_else(x)
+    # some code
   end
   ```
 
@@ -1691,25 +1763,25 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   ```Ruby
   # 悪い例
-  %w(one two three) * ', '
+  %w[one two three] * ', '
   # => 'one, two, three'
 
   # 良い例
-  %w(one two three).join(', ')
+  %w[one two three].join(', ')
   # => 'one, two, three'
   ```
 
-* <a name="splat-arrays"></a>
+* <a name="array-coercion"></a>
   配列かどうかわからない変数を配列とみなして処理したいときは、
-  明示的に`Array`かどうかチェックするよりも、`[*var]`や`Array()`を使いましょう。
-<sup>[[link](#splat-arrays)]</sup>
+  明示的に`Array`かどうかチェックすることや`[*var]`よりも、`Array()`を使いましょう。
+<sup>[[link](#array-coercion)]</sup>
 
   ```Ruby
   # 悪い例
   paths = [paths] unless paths.is_a? Array
   paths.each { |path| do_something(path) }
 
-  # 良い例
+  # 悪い例 (常に新しいArrayのインスタンスを生成します)
   [*paths].each { |path| do_something(path) }
 
   # 良い例 (そして少し読みやすいです)
@@ -1815,7 +1887,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   # 悪い例
   def compute_thing(thing)
     if thing[:foo]
-      update_with_bar(thing)
+      update_with_bar(thing[:foo])
       if thing[:foo][:bar]
         partial_compute(thing)
       else
@@ -1938,20 +2010,48 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   :someSymbol
 
   someVar = 5
+  var_10  = 10
 
   def someMethod
-    ...
+    # some code
   end
 
   def SomeMethod
-   ...
+    # some code
   end
 
   # 良い例
   :some_symbol
 
+  some_var = 5
+  var10    = 10
+
   def some_method
-    ...
+    # some code
+  end
+  ```
+
+* <a name="snake-case-symbols-methods-vars-with-numbers"></a>
+  シンボル、メソッド、および変数名において、文字と数字を分離しないようにしましょう。
+<sup>[[link](#snake-case-symbols-methods-vars-with-numbers)]</sup>
+
+  ```Ruby
+  # 悪い例
+  :some_sym_1
+
+  some_var_1 = 1
+
+  def some_method_1
+    # some code
+  end
+
+  # 良い例
+  :some_sym1
+
+  some_var1 = 1
+
+  def some_method1
+    # some code
   end
   ```
 
@@ -1962,32 +2062,32 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```Ruby
   # 悪い例
   class Someclass
-    ...
+    # some code
   end
 
   class Some_Class
-    ...
+    # some code
   end
 
   class SomeXml
-    ...
+    # some code
   end
 
   class XmlSomething
-    ...
+    # some code
   end
 
   # 良い例
   class SomeClass
-    ...
+    # some code
   end
 
   class SomeXML
-    ...
+    # some code
   end
 
   class XMLSomething
-    ...
+    # some code
   end
   ```
 
@@ -2022,6 +2122,44 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   (すなわち`Array#empty?`のように)。
   boolean値を返さないメソッドは、疑問符で終わるべきではないです。
 <sup>[[link](#bool-methods-qmark)]</sup>
+
+* <a name="bool-methods-prefix"></a>
+  述語メソッドに `is`、` does`、 `can`のような助動詞をつけるべきではありません。
+  これらの単語は冗長で、Rubyコアライブラリの述語メソッドのスタイル
+  ( `empty？`や `include？`など)と矛盾しています。
+<sup>[[link](#bool-methods-prefix)]</sup>
+
+  ```Ruby
+  # 悪い例
+  class Person
+    def is_tall?
+      true
+    end
+
+    def can_play_basketball?
+      false
+    end
+
+    def does_like_candy?
+      true
+    end
+  end
+
+  # 良い例
+  class Person
+    def tall?
+      true
+    end
+
+    def basketball_player?
+      false
+    end
+
+    def likes_candy?
+      true
+    end
+  end
+  ```
 
 * <a name="dangerous-method-bang"></a>
   *危険* な可能性のあるメソッド
@@ -2075,11 +2213,6 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   end
   ```
 
-* <a name="reduce-blocks"></a>
-  短いブロックと共に`reduce`を使うとき、引数は`|a, e|`と名づけましょう。
-  (accumulator, element).
-<sup>[[link](#reduce-blocks)]</sup>
-
 * <a name="other-arg"></a>
   二項演算子を定義するとき、引数名は`other`を用いましょう
   (`<<`と`[]`は意味が違ってくるので、このルールの例外です)。
@@ -2131,12 +2264,12 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 <sup>[[link](#comment-upkeep)]</sup>
 
 > 良いコードは良いジョークのようだ - なんの説明もいらない。<br>
-> -- Russ Olsen
+> &mdash; プログラマの格言 [Russ Olsen](http://eloquentruby.com/blog/2011/03/07/good-code-and-good-jokes/)
 
 * <a name="refactor-dont-comment"></a>
   悪いコードを説明するコメントは避けましょう。
   自己説明的なコードへのリファクタリングを行いましょう
-  (やるかやらないか - "やってみる"はなしだ。 --Yoda)。
+  (「やるかやらないか &mdash; "やってみる"はなしだ。」 Yoda)。
 <sup>[[link](#refactor-dont-comment)]</sup>
 
 ### 注釈
@@ -2202,6 +2335,73 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   それらのキーワードは`README`やそれに類するものに書いておきましょう。
 <sup>[[link](#document-annotations)]</sup>
 
+### マジックコメント
+
+* <a name="magic-comments-first"></a>
+  マジックコメントは、全てのコメントとコードよりも上に置きましょう。
+  シバン(Shebang)が必要な場合にのみ、シバンの下にマジックコメントを移動する必要があります。
+<sup>[[link](#magic-comments-first)]</sup>
+
+  ```Ruby
+  # 良い例
+  # frozen_string_literal: true
+  # Some documentation about Person
+  class Person
+  end
+
+  # 悪い例
+  # Some documentation about Person
+  # frozen_string_literal: true
+  class Person
+  end
+  ```
+
+  ```Ruby
+  # 良い例
+  #!/usr/bin/env ruby
+  # frozen_string_literal: true
+  App.parse(ARGV)
+
+  # 悪い例
+  # frozen_string_literal: true
+  #!/usr/bin/env ruby
+  App.parse(ARGV)
+  ```
+
+* <a name="one-magic-comment-per-line"></a>
+  マジックコメントが複数必要な場合、一つのマジックコメントは一つの行に置きましょう。
+<sup>[[link](#one-magic-comment-per-line)]</sup>
+
+  ```Ruby
+  # 良い例
+  # frozen_string_literal: true
+  # encoding: ascii-8bit
+
+  # 悪い例
+  # -*- frozen_string_literal: true; encoding: ascii-8bit -*-
+  ```
+
+* <a name="separate-magic-comments-from-code"></a>
+  マジックコメントは、コードやドキュメントから空行で区切りましょう。
+<sup>[[link](#separate-magic-comments-from-code)]</sup>
+
+  ```Ruby
+  # 良い例
+  # frozen_string_literal: true
+
+  # Some documentation for Person
+  class Person
+    # Some code
+  end
+
+  # 悪い例
+  # frozen_string_literal: true
+  # Some documentation for Person
+  class Person
+    # Some code
+  end
+  ```
+
 ## クラスとモジュール
 
 * <a name="consistent-classes"></a>
@@ -2215,7 +2415,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
     include AnotherModule
 
     # 内部クラス
-    CustomErrorKlass = Class.new(StandardError)
+    CustomError = Class.new(StandardError)
 
     # 次に定数
     SOME_CONSTANT = 20
@@ -2248,6 +2448,24 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
     def some_private_method
     end
+  end
+  ```
+
+* <a name="mixin-grouping"></a>
+  複数のミックスインは、別々の行に分割しましょう。
+<sup>[[link](#mixin-grouping)]</sup>
+
+  ```Ruby
+  # 悪い例
+  class Person
+    include Foo, Bar
+  end
+
+  # 良い例
+  class Person
+    # 複数のミックスインは分割された文にします
+    include Foo
+    include Bar
   end
   ```
 
@@ -2308,6 +2526,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
     end
 
     def self.some_other_method
+      # body omitted
     end
   end
 
@@ -2320,6 +2539,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
     end
 
     def some_other_method
+      # body omitted
     end
   end
   ```
@@ -2420,12 +2640,42 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   end
   ```
 
+* <a name="accessor_mutator_method_names"></a>
+  アクセサやミューテータの場合、メソッド名の前に`get_`や`set_`をつけないようにしましょう。
+  アクセサ(リーダ)にはアトリビュートの名前を、ミューテータ(ライタ)には`attr_name=`
+  を使用するのはRubyの規約です。
+<sup>[[link](#accessor_mutator_method_names)]</sup>
+
+  ```Ruby
+  # 悪い例
+  class Person
+    def get_name
+      "#{@first_name} #{@last_name}"
+    end
+
+    def set_name(name)
+      @first_name, @last_name = name.split(' ')
+    end
+  end
+
+  # 良い例
+  class Person
+    def name
+      "#{@first_name} #{@last_name}"
+    end
+
+    def name=(name)
+      @first_name, @last_name = name.split(' ')
+    end
+  end
+  ```
+
 * <a name="attr"></a>
   `attr`の使用は避けましょう。代わりに`attr_reader`や`attr_accessor`を使いましょう。
 <sup>[[link](#attr)]</sup>
 
   ```Ruby
-  # 悪い例 - １つのアクセサしか作れません(1.9で廃止されました)
+  # 悪い例 - １つのアクセサしか作れません(Ruby 1.9で廃止されました)
   attr :something, true
   attr :one, :two, :three # attr_readerと同じです
 
@@ -2453,7 +2703,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   # より良い例
   Person = Struct.new(:first_name, :last_name) do
   end
-  ````
+  ```
 
 * <a name="no-extend-struct-new"></a>
   `Struct.new`で初期化されたインスタンスを拡張してはいけません。
@@ -2468,7 +2718,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   # 良い例
   Person = Struct.new(:first_name, :last_name)
-  ````
+  ```
 
 * <a name="factory-methods"></a>
   あるクラスのインスタンス生成する追加の方法を提供したいときは、
@@ -2562,17 +2812,17 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```Ruby
   class SomeClass
     def public_method
-      # ...
+      # some code
     end
 
     private
 
     def private_method
-      # ...
+      # some code
     end
 
     def another_private_method
-      # ...
+      # some code
     end
   end
   ```
@@ -2672,6 +2922,35 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   end
   ```
 
+* <a name="class-and-self"></a>
+  クラス(またはモジュール)メソッドが他のメソッドを呼び出す際は、
+  `self`または自分自身のクラス名の後に`.`を続けて使用しないようにしましょう。
+  これは、「サービスクラス」やそれと類似の、クラスがあたかも関数であるかのように
+  扱われるコンセプトの場合でよく見られます。
+  この規則は、そのようなクラスで反復的なボイラープレートを減らす傾向があります。
+  <sup>[[link](#class-and-self)]</sup>
+
+  ```Ruby
+  class TestClass
+    # 悪い例 -- クラスのリネームやメソッドの移動の際に余分な手間がかかります
+    def self.call(param1, param2)
+      TestClass.new(param1).call(param2)
+    end
+
+    # 悪い例 -- 必要以上に冗長です
+    def self.call(param1, param2)
+      self.new(param1).call(param2)
+    end
+
+    # 良い例
+    def self.call(param1, param2)
+      new(param1).call(param2)
+    end
+
+    # ...other methods...
+  end
+  ```
+
 ## 例外
 
 * <a name="prefer-raise-over-fail"></a>
@@ -2722,6 +3001,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 <sup>[[link](#no-return-ensure)]</sup>
 
   ```Ruby
+  # 悪い例
   def foo
     raise
   ensure
@@ -2915,12 +3195,12 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```Ruby
   # 悪い例 - 明示的にファイルディスクリプタを閉じる必要が有ります
   f = File.open('testfile')
-    # ...
+  # ファイルに対する何らかのアクション
   f.close
 
   # 良い例 - ファイルディスクリプタは自動的に閉じられます
   File.open('testfile') do |f|
-    # ...
+    # ファイルに対する何らかのアクション
   end
   ```
 
@@ -2956,7 +3236,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   STATES = ['draft', 'open', 'closed']
 
   # 良い例
-  STATES = %w(draft open closed)
+  STATES = %w[draft open closed]
   ```
 
 * <a name="percent-i"></a>
@@ -2971,7 +3251,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   STATES = [:draft, :open, :closed]
 
   # 良い例
-  STATES = %i(draft open closed)
+  STATES = %i[draft open closed]
   ```
 
 * <a name="no-trailing-array-commas"></a>
@@ -3058,8 +3338,6 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 * <a name="hash-key"></a>
   `Hash#has_key?`より`Hash#key?`を、
   `Hash#has_value?`より`Hash#value?`を用いましょう。
-    [ここ](http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/43765)
-  でMatzが述べているように、長い記法は廃止が検討されています。
 <sup>[[link](#hash-key)]</sup>
 
   ```Ruby
@@ -3070,6 +3348,23 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   # 良い例
   hash.key?(:test)
   hash.value?(value)
+  ```
+
+* <a name="hash-each"></a>
+  `Hash#keys.each` の代わりに `Hash#each_key` を、 `Hsah#values.each` の代わりに
+  `Hash#each_value` を用いましょう。
+<sup>[[link](#hash-each)]</sup>
+
+  ```Ruby
+  # 悪い例
+  hash.keys.each { |k| p k }
+  hash.values.each { |v| p v }
+  hash.each { |k, _v| p k }
+  hash.each { |_k, v| p v }
+
+  # 良い例
+  hash.each_key { |k| p k }
+  hash.each_value { |v| p v }
   ```
 
 * <a name="hash-fetch"></a>
@@ -3172,11 +3467,42 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   end
   ```
 
+## 数値
+
+* <a name="integer-type-checking"></a>
+  整数型の型をチェックする為に、`Integer`を使用して下さい。
+  `Fixnum`はプラットフォームに依存するため、32ビットマシンと64ビットマシンで異なる結果が返されます。
+<sup>[[link](#integer-type-checking)]</sup>
+
+  ```Ruby
+  timestamp = Time.now.to_i
+
+  # 悪い例
+  timestamp.is_a? Fixnum
+  timestamp.is_a? Bignum
+
+  # 良い例
+  timestamp.is_a? Integer
+  ```
+
+  * <a name="random-numbers"></a>
+  乱数を生成する場合は、整数とオフセットの代わりに範囲リテラルを使用しましょう。
+  意図が明確であるためです。サイコロの役割をシミュレートすることを想像してください:
+<sup>[[link](#random-numbers)]</sup>
+
+    ```Ruby
+    # 悪い例
+    rand(6) + 1
+
+    # 良い例
+    rand(1..6)
+    ```
+
 ## 文字列
 
-* <a name="pad-string-interpolation"></a>
+* <a name="string-interpolation"></a>
   文字列連結の代わりに文字列挿入や文字列整形を使いましょう。
-<sup>[[link](#pad-string-interpolation)]</sup>
+<sup>[[link](#string-interpolation)]</sup>
 
   ```Ruby
   # 悪い例
@@ -3187,18 +3513,6 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
   # 良い例
   email_with_name = format('%s <%s>', user.name, user.email)
-  ```
-
-* <a name="string-interpolation"></a>
-  文字列挿入時には、括弧の内部にスペースを入れるべきではありません。
-<sup>[[link](#string-interpolation)]</sup>
-
-  ```Ruby
-  # 悪い例
-  "From: #{ user.first_name }, #{ user.last_name }"
-
-  # 良い例
-  "From: #{user.first_name}, #{user.last_name}"
   ```
 
 * <a name="consistent-string-literals"></a>
@@ -3237,7 +3551,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
 * <a name="no-character-literals"></a>
   文字リテラル構文`?x`を用いてはいけません。
-  Ruby 1.9以降、この表記法を必要とする場面はないはずです -
+  Ruby 1.9以降、この表記法を必要とする場面はないはずです &mdash;
   `?x`は`'x'`(１文字の文字列)と解釈されるからです。
 <sup>[[link](#no-character-literals)]</sup>
 
@@ -3353,6 +3667,65 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   # => "def test\n  some_method\n  other_method\nend\n"
   ```
 
+* <a name="squiggly-heredocs"></a>
+  きちんとインデントされた複数行の文字列には、Ruby 2.3 の、インデントされた
+  ヒアドキュメントを使いましょう。
+<sup>[[link](#squiggly-heredocs)]</sup>
+
+  ```Ruby
+  # 悪い例 - Powerpack の String#strip_margin を使用しています。
+  code = <<-END.strip_margin('|')
+    |def test
+    |  some_method
+    |  other_method
+    |end
+  END
+
+  # こちらも悪い例
+  code = <<-END
+  def test
+    some_method
+    other_method
+  end
+  END
+
+  # 良い例
+  code = <<~END
+    def test
+      some_method
+      other_method
+    end
+  END
+  ```
+
+## Date & Time
+
+* <a name="time-now"></a>
+  現在のシステム時間を読み出すには、`Time.new`よりも`Time.now`を使いましょう。
+<sup>[[link](#time-now)]</sup>
+
+* <a name="no-datetime"></a>
+  改暦を考慮する必要がある場合を除いて、`DateTime`を使用しないようにしましょう。
+  もし必要な場合は、`start`引数を明示的にしていして意図を明示して下さい。
+<sup>[[link](#no-datetime)]</sup>
+
+  ```Ruby
+  # 悪い例 - DateTimeを現在の時刻の為に使用
+  DateTime.now
+
+  # 良い例 - Timeを現在の時刻の為に使用
+  Time.now
+
+  # 悪い例 - DateTimeを現代の日の為に使用
+  DateTime.iso8601('2016-06-29')
+
+  # 良い例 - Dateを現代の日の為に使用
+  Date.iso8601('2016-06-29')
+
+  # 良い例 - DateTimeを`start`と共に過去の日付の為に使用
+  DateTime.iso8601('1751-04-23', Date::ENGLAND)
+  ```
+
 ## 正規表現
 
 > なにか問題に突き当たった時、「わかった、正規表現を使えばいいんだ」と思う人がいますね。
@@ -3413,12 +3786,12 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   ```Ruby
   # 悪い例
   /(regexp)/ =~ string
-  ...
+  # some code
   process Regexp.last_match(1)
 
   # 良い例
   /(?<meaningful_var>regexp)/ =~ string
-  ...
+  # some code
   process meaningful_var
   ```
 
@@ -3496,7 +3869,7 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 
 * <a name="percent-q"></a>
   文字列に`'`と`"`双方が含まれない限り、
-  `%q`の使用は避けましょう。
+  `%()`や、それと同等の`%q`の使用は避けましょう。
   通常の文字列リテラルのほうがより読みやすいので、
   エスケープが大量に必要出ない限りは、そちらを使いましょう。
 <sup>[[link](#percent-q)]</sup>
@@ -3547,20 +3920,38 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
 <sup>[[link](#percent-s)]</sup>
 
 * <a name="percent-literal-braces"></a>
-  パーセントリテラルの区切り文字は、`%r`を除いて`()`が好まれます。
-  正規表現の中では、括弧は色々なシーンで使われるので、
-  正規表現の内容によっては、より使われる機会の少ない`{`のほうが
-  良い選択となることがあるかもしれません。
+  さまざまな種類のパーセントリテラルに最も適した括弧を使用します。
 <sup>[[link](#percent-literal-braces)]</sup>
+  - 文字列リテラル(`%q`, `%Q`)には`()`を使用しましょう。
+  - 配列リテラル(`%w`, `%i`, `%W`, `%I`)には、標準の配列リテラルに
+  合わせて`[]`を使用しましょう。
+  - 正規表現リテラル(`%r`)には、`{}`を使用しましょう。
+  正規表現の中に括弧が現れることが多いためです。
+  `{`が最も一般的でない為、`%r`の区切り文字には最適です。
+  - その他のリテラル(例えば `%s`, `%x`)には`()`を使用しましょう。
 
   ```Ruby
   # 悪い例
-  %w[one two three]
   %q{"Test's king!", John said.}
 
   # 良い例
-  %w(one two three)
   %q("Test's king!", John said.)
+
+  # 悪い例
+  %w(one two three)
+  %i(one two three)
+
+  # 良い例
+  %w[one two three]
+  %i[one two three]
+
+  # 悪い例
+  %r((\w+)-(\d+))
+  %r{\w{1,2}\d{2,5}}
+
+  # 良い例
+  %r{(\w+)-(\d+)}
+  %r|\w{1,2}\d{2,5}|
   ```
 
 ## メタプログラミング
@@ -3666,15 +4057,15 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
     private
 
     def reset_token
-      ...
+      # some code
     end
 
     def create_token
-      ...
+      # some code
     end
 
     def activate!
-      ...
+      # some code
     end
   end
 
@@ -3755,10 +4146,6 @@ Rubyコミュニティ内でもスタイルについての統一見解が存在�
   また、些細なオプションには`ruby -s`を使いましょう。
 <sup>[[link](#optionparser)]</sup>
 
-* <a name="time-now"></a>
-  現在のシステム時間を読み出すには、`Time.new`よりも`Time.now`を使いましょう。
-<sup>[[link](#time-now)]</sup>
-
 * <a name="functional-code"></a>
   破壊的変更をしなくても済むなら、できるだけ関数的プログラミング手法を使いましょう。
 <sup>[[link](#functional-code)]</sup>
@@ -3797,10 +4184,10 @@ MRI 1.9、MRI 2.0 双方をサポートし、Emacs向けのよいプラグイン
 
 # Contributing
 
-このガイドはまだ未完成です - いくつかのルールは例がなく、 いくつかのルールの例はじゅうぶんにクリアにルールを説明できていません。
+このガイドはまだ未完成です &mdash; いくつかのルールは例がなく、 いくつかのルールの例はじゅうぶんにクリアにルールを説明できていません。
 そのようなルールの改善はRubyコミュニティを助ける素晴らしい(そしてシンプルな)手段です!
 
-これらの課題はやがて解決されると思いたいです - ただ現状にご留意ください。
+これらの課題はやがて解決されると思いたいです &mdash; ただ現状にご留意ください。
 
 このガイドに書いてあることには変更不能なものはありません。
 Rubyのコードスタイルに興味のある全ての人と共に取り組むことで、
@@ -3838,5 +4225,6 @@ Rubyのコードスタイルに興味のある全ての人と共に取り組む�
 [rails-style-guide]: https://github.com/bbatsov/rails-style-guide
 [pickaxe]: https://pragprog.com/book/ruby4/programming-ruby-1-9-2-0
 [trpl]: http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177
-[transmuter]: https://github.com/kalbasit/transmuter
+[Pandoc]: http://pandoc.org/
 [RuboCop]: https://github.com/bbatsov/rubocop
+[rdoc]: http://rdoc.sourceforge.net/doc/
